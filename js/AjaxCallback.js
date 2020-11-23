@@ -5,7 +5,7 @@ function showTime() {
     return date.getHours() + "Hrs: "+date.getMinutes() +"Mins: "+date.getSeconds() +"Secs";
 }
 
-function makeAJAXCall(methodType, url, callback, async = true, data= null ) {
+function makeAJAXCall(methodType, url, callback, async = true, data ) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         console.log(methodType+" State changes called. | At: "+showTime()+" | Ready State: "+
@@ -20,10 +20,10 @@ function makeAJAXCall(methodType, url, callback, async = true, data= null ) {
     }
     xhr.open(methodType, url, async);
     if(data) {
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify(data));
+         xhr.setRequestHeader("Content-Type", "application/json");
+         xhr.send(JSON.stringify(data));
     } else {
-        xhr.send();
+         xhr.send();
     }
     console.log(methodType+ " request sent to the server at "+showTime());
 }
@@ -34,8 +34,7 @@ const getURL = "http://localhost:3000/employees";
 function getUserDetails(data) {
     console.log("Get User Data at: "+showTime()+" | Data: "+data);
 }
-makeAJAXCall("GET", getURL, getUserDetails, true);
-console.log("Made GET AJAX Call to Server at "+ showTime()+"\n");
+
 
  
 //Delete User
@@ -55,3 +54,6 @@ function userAdded(data) {
 }
 makeAJAXCall("POST", postURL, userAdded, true, empData);
 console.log("\n$$$$$$$$$$$$$$$$=== User Added ===$$$$$$$$$$$$$$$$$$$\nAt: "+showTime()+"\n");
+
+makeAJAXCall("GET", getURL, getUserDetails, true);
+console.log("Made GET AJAX Call to Server at "+ showTime()+"\n");
