@@ -48,7 +48,7 @@ makePromiseCall("GET", getURL, true)
                 JSON.stringify(error)));
 console.log("Made GET AJAX Call to Server at " + showTime());
 
-const delUrl = "http://localhost:3000/employees/35";
+const delUrl = "http://localhost:3000/employees/2";
 makePromiseCall("DELETE", delUrl, true)
     .then(responseText => {
         console.log("User Data Deleted: "+responseText)
